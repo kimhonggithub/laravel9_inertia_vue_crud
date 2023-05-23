@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
@@ -65,7 +66,7 @@ class BookController extends Controller
 
         $book->update($request->only(['title', 'author']));
 
-        $this->processImage($request, $book);
+        $this->processImage($request, $book); 
 
         return redirect()->back()
             ->with('message', 'Book updated');
@@ -84,7 +85,7 @@ class BookController extends Controller
             ->with('message', 'Book deleted');
     }
 
-    public function upload(Request $request)
+    public function upload(\Illuminate\Http\Request $request)
     {
         if($request->hasFile('imageFilepond'))
         {
@@ -112,7 +113,7 @@ class BookController extends Controller
         foreach($images as $image)
         {
             if(!$book->hasImage($image)){
-                $path = storage_path('app/public/' . $image);
+                $path = storage_path('app/public/uploads/books/'.$image);
                 if(file_exists($path)){
                     copy($path, public_path($image));
                     unlink($path);

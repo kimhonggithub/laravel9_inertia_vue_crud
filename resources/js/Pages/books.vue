@@ -33,13 +33,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in data.data">
+                            <tr v-for="item in data.data" :key="item.id">
                                 <td class="px-4 py-2 border">{{ item.id }}</td>
                                 <td class="px-4 py-2 border">{{ item.title }}</td>
                                 <td class="px-4 py-2 border">{{ item.author }}</td>
                                 <td class="px-4 py-2 border">
                                     <div v-if="item.image">
-                                    <img v-for="img in item.image.split('|')" :src="image_path(img)" />
+                                    <img v-for="img in item.image.split('|')" :key="img" :src="image_path(img)" />
                                     </div>
                                 </td>
                                 <td class="border px-4 py-2">
@@ -87,8 +87,8 @@
             }
         },
         methods: {
-            image_path(image){
-                return '/' + image;
+            image_path(img) {
+                return '/storage/' + img;
             },
             saveItem(item)
             {

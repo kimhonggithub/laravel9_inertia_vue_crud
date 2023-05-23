@@ -32,7 +32,6 @@
                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                        id="formBookAuthor" placeholder="Enter Author">
                                 <div v-if="$page.props.errors.author" class="text-red-500">{{ $page.props.errors.author }}</div>
-
                             </div>
                             <div class="mb-4">
                                 <label for="formBookImage"
@@ -41,7 +40,7 @@
                                     name="imageFilepond"
                                     ref="pond"
                                     v-bind:allow-multiple="true"
-                                    accepted-file-types="image/png, image/jpeg"
+                                    accepted-file-types="application/pdf"
                                     v-bind:server="{
                                         url: '',
                                         timeout: 7000,
@@ -62,6 +61,7 @@
                                     v-on:init="handleFilePondInit"
                                 >
                                 </file-pond>
+                                
                             </div>
                         </div>
                     </div>
